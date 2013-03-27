@@ -1,3 +1,3 @@
 class WelcomePage < ActiveRecord::Base
-  attr_accessible :message
+  # attr_accessible :title, :body
 end
