@@ -1,0 +1,2 @@
+module BlahPageHelper
+end

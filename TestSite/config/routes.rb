@@ -1,7 +1,9 @@
 TestSite::Application.routes.draw do
   root :to => "welcome_page#welcome"
-  get "welcome_page/welcome"
-
+  get "welcome_page/welcome" => "welcome_page#welcome"
+  get "welcome_page/index"
+  get "welcome_page/" => "welcome_page#index"
+  get "welcome_page" => "welcome_page#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
