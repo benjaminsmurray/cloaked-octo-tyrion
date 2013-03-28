@@ -1,0 +1,21 @@
+<h1>Listing welcome_pages</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @welcome_pages.each do |welcome_page| %>
+  <tr>
+    <td><%= link_to 'Show', welcome_page %></td>
+    <td><%= link_to 'Edit', edit_welcome_page_path(welcome_page) %></td>
+    <td><%= link_to 'Destroy', welcome_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Welcome page', new_welcome_page_path %>
