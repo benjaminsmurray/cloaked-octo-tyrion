@@ -5,7 +5,7 @@ class WelcomePagesController < ApplicationController
     @welcome_pages = WelcomePage.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html() # index.html.erb
       format.json { render json: @welcome_pages }
     end
   end
