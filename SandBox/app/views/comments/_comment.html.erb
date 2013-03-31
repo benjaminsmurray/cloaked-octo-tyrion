@@ -1,0 +1,9 @@
+  <p>
+    <b>Commenter:</b>
+    <%= comment.commenter %>
+    </p>
+  <p>
+    <b>Comment:</b>
+    <%= comment.msg %>
+    </p>
+    <%= link_to('Destroy',url_for([@welcome_page,comment]), :method=> :delete, :confirm=> 'sure?' ) %>

@@ -9,6 +9,7 @@
 
 <% @welcome_pages.each do |welcome_page| %>
   <tr>
+    <td>Title: <%= welcome_page.title %></td>
     <td><%= link_to 'Show', welcome_page %></td>
     <td><%= link_to 'Edit', edit_welcome_page_path(welcome_page) %></td>
     <td><%= link_to 'Destroy', welcome_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>

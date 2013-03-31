@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-
-
+<p>Title: <%= @welcome_page.title %></p>
+<%= render @welcome_page.comments %>
+<%= render 'comments/comment_form' %>
 <%= link_to 'Edit', edit_welcome_page_path(@welcome_page) %> |
 <%= link_to 'Back', welcome_pages_path %>

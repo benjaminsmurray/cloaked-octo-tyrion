@@ -1,5 +1,5 @@
 SandBox::Application.routes.draw do
-  resources :welcome_pages
+  resources :welcome_pages do resources :comments end
   root :to => "welcome_pages#index"
 
   # The priority is based upon order of creation:

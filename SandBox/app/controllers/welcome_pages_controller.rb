@@ -4,10 +4,10 @@ class WelcomePagesController < ApplicationController
   def index
     @welcome_pages = WelcomePage.all
 
-    respond_to do |format|
+    respond_to { |format|
       format.html() # index.html.erb
       format.json { render json: @welcome_pages }
-    end
+    }
   end
 
   # GET /welcome_pages/1
