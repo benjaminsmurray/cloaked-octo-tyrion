@@ -25,7 +25,6 @@ class WelcomePagesController < ApplicationController
   # GET /welcome_pages/new.json
   def new
     @welcome_page = WelcomePage.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @welcome_page }

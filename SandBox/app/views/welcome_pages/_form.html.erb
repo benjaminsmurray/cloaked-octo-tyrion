@@ -1,3 +1,4 @@
+<% @tag=@welcome_page.tags.build %>
 <%= form_for(@welcome_page) do |f| %>
   <% if @welcome_page.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +14,13 @@
   <div class="field">
       <%=f.label :title %><br />
       <%=f.text_field :title %>
-  </div>
+    </div>
+    <%= f.fields_for :tags do |tag_f| %>
+    <div class = "field">
+      Tag Name:<br/>
+      <%=tag_f.text_field :name %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
