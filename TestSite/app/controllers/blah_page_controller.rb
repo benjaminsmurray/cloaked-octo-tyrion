@@ -1,2 +1,0 @@
-class BlahPageController < ApplicationController
-end
