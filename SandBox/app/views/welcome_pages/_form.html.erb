@@ -1,4 +1,3 @@
-<% @tag=@welcome_page.tags.build %>
 <%= form_for(@welcome_page) do |f| %>
   <% if @welcome_page.errors.any? %>
     <div id="error_explanation">
@@ -15,10 +14,14 @@
       <%=f.label :title %><br />
       <%=f.text_field :title %>
     </div>
-    <%= f.fields_for :tags do |tag_f| %>
+    <%= f.fields_for :tag do |tag_f| %>
     <div class = "field">
-      Tag Name:<br/>
+      <%= tag_f.label :name, "tag name:" %>
       <%=tag_f.text_field :name %>
+      <% unless tag_f.object.nil? || tag_f.object.new_record? %>
+      <%= tag_f.label :_destroy, 'Remove:'%>
+      <%= tag_f.check_box :_destroy%>
+    <% end %>
     </div>
   <% end %>
   <div class="actions">

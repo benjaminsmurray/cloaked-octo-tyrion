@@ -25,6 +25,7 @@ class WelcomePagesController < ApplicationController
   # GET /welcome_pages/new.json
   def new
     @welcome_page = WelcomePage.new
+    @welcome_page.build_tag
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @welcome_page }
@@ -34,6 +35,10 @@ class WelcomePagesController < ApplicationController
   # GET /welcome_pages/1/edit
   def edit
     @welcome_page = WelcomePage.find(params[:id])
+  if @welcome_page.tag.nil?
+     @welcome_page.build_tag
+    end
+  
   end
 
   # POST /welcome_pages

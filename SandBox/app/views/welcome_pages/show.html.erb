@@ -2,6 +2,8 @@
 <p>Title: <%= @welcome_page.title %></p>
 <%= render @welcome_page.comments %>
 <%= render 'comments/comment_form' %>
-<%= render @welcome_page.tags %>
+<% unless @welcome_page.tag.nil? %>
+  <%= render @welcome_page.tag %>
+<% end %>
 <%= link_to 'Edit', edit_welcome_page_path(@welcome_page) %> |
 <%= link_to 'Back', welcome_pages_path %>
