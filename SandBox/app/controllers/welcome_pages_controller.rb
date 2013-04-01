@@ -1,4 +1,4 @@
-lass WelcomePagesController < ApplicationController
+class WelcomePagesController < ApplicationController
   # GET /welcome_pages
   # GET /welcome_pages.json
   def index
