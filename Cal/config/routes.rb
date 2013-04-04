@@ -1,4 +1,8 @@
 Cal::Application.routes.draw do
+  root :to => 'home#index'
+  match '/register'=> 'user#new'
+  match '/login'=>'user#index'
+  match '/home' => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
