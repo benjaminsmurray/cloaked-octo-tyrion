@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calendar thing<%= if content_for?(:title); " | "+yield(:title); end %>
+  <title><%= full_title() %>
     </title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>

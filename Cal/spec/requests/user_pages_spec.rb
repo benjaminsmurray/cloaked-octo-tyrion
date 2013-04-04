@@ -1,10 +1,9 @@
 require 'spec_helper'
-
-describe "UserPages" do
+describe "User Pages" do
   describe "register page" do
-    it "fadsf" do
-      visit '/register'
-      page.should have_selector('title', text: "Register")
+    it 'visit register page, should have title register' do
+      visit register_path
+      page.should have_content("Register")
     end   
   end
 end
