@@ -11,7 +11,6 @@
 
 class User < ActiveRecord::Base
   attr_accessible :password, :username
-  before_save {|user| user.username = username.downcase}
-  validates :username, presence: true, uniqueness: {case_sensitive:false}, length:{maximum: 50}
+  validates :username, presence: true, uniqueness: {case_sensitive:true}, length:{maximum: 50}
   validates :password, presence: true
 end
