@@ -1,0 +1,6 @@
+<%= form_for(@user, url: { action: locals[:action]}) do |form|%>
+  <%= form.text_field :username, :value=>"Username", onClick: "this.value=''"%>
+  <%= form.password_field :password, :value=>"password", onClick:"this.value=''"%>
+<br>
+<%=form.submit locals[:submit], :class=>"btn btn-large btn-primary"%>
+<%end%>
