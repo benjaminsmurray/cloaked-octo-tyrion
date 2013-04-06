@@ -3,7 +3,11 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if signed_in?
-      @events = Event.find_all_by_owner(current_user.username)
+ #   @user = User.find_by_username(current_user.username)
+#    @subscriptions = @user.subscriptions.find_all_by_owner_name(current_user.username)
+#     @subscriptions.each do |s|
+        @events = Event.find_all_by_owner(current_user.username)
+ #     end
     else
       @events = Event.all
     end
@@ -108,12 +112,20 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
-
-    respond_to do |format|
-      format.html { redirect_to events_url }
-      format.json { head :no_content }
+    if !signed_in?
+       respond_to do |format|
+        format.html {redirect_to events_url}# new.html.erb
+        format.json { render json: events_url }
+      end
+    else
+      @event = Event.find(params[:id])
+        if @event[:owner] == current_user.username
+          @event.destroy
+         end
+      respond_to do |format|
+        format.html { redirect_to events_url }
+        format.json { head :no_content }
+      end
     end
-  end
+end
 end

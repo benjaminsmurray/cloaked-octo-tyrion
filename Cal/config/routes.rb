@@ -1,6 +1,9 @@
 Cal::Application.routes.draw do
-  resources :events
+  resources :subscriptions
 
+
+  resources :events
+  
 
 #  resources :myeventshandlers
 

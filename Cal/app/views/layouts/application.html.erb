@@ -15,6 +15,7 @@
       <ul class = "nav pull-right">
         <li><%= link_to("Home", events_path) %></li>
         <% if signed_in?%>
+          <li><%= link_to "Subcriptions", subscriptions_path%>
           <li><%= link_to "Log out", sessiondestroy_path, method: "delete"%>
           </li>
         <% else%>

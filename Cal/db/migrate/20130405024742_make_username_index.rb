@@ -5,6 +5,6 @@ class MakeUsernameIndex < ActiveRecord::Migration
   def down
   end
   def change
-    add_index :users, :username, unique:true
+    add_column :users, :username, unique:true
   end
 end

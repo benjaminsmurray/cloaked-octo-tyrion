@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: {case_sensitive:true}, length:{maximum: 50}
   validates :password, presence: true
   before_save :create_remember_token
-  has_many :subcriptions
+  has_many :subscriptions
   private
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
