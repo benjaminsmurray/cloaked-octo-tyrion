@@ -1,10 +1,15 @@
 Cal::Application.routes.draw do
-  root :to => 'home#index'
+#  resources :myeventshandlers
+
+
+  root :to => 'myeventshandlers#index'
   match '/register'=> 'user#new'
-  match '/auth' => 'user#auth'
-  match '/login'=>'user#index'
-  match '/home' => 'home#index'
+  match '/login'=>'session#new'
+  match '/session/create' => 'session#create', :as => :sessioncreate
+  match '/session/destroy' => 'session#destroy', :as => :sessiondestroy
+  match '/home' => 'myeventshandlers#index'
   match '/create' => 'user#create'
+  match '/calendar' => 'myeventshandlers#index', :as => :my_events_handler
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

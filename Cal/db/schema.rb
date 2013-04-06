@@ -11,9 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405230044) do
+ActiveRecord::Schema.define(:version => 20130406083215) do
 
   create_table "homes", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "myeventshandlers", :force => true do |t|
+    t.string   "username"
+    t.string   "eventid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -23,8 +30,10 @@ ActiveRecord::Schema.define(:version => 20130405230044) do
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "remember_token"
   end
 
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end
