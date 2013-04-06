@@ -11,6 +11,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :password, :username
+  has_secure_password
   validates :username, presence: true, uniqueness: {case_sensitive:true}, length:{maximum: 50}
   validates :password, presence: true
 end

@@ -16,20 +16,20 @@ class UserController < ApplicationController
   end
   def auth
     if params[:user]
-      @exists = User.exists?(:username => params[:user][:username])
+      @exists = User.find_by_username(params[:user][:username]).try(:authenticate, params[:user][:password])
     end
-      respond_to do |format|
-      if @exists
-        flash[:state] = :success
-        flash[:notice] = "Login Successful!"
-        format.html { redirect_to loggedin_path}
-        format.json { render json: @user, location:@user}
-      else
-        flash[:state] = :error
-        flash[:notice] = "Login Failed!"
-        format.html {redirect_to login_path}
-        format.json { render json: @user.errors}
-      end
+    respond_to do |format|
+    if @exists
+      flash[:state] = :success
+      flash[:notice] = "Login Successful!"
+      format.html { redirect_to loggedin_path}
+      format.json { render json: @user, location:@user}
+    else
+      flash[:state] = :error
+      flash[:notice] = "Login Failed!"
+      format.html {redirect_to login_path}
+      format.json { render json: @user.errors}
+    end
       end
   end
 
@@ -44,7 +44,7 @@ class UserController < ApplicationController
         format.json { render json: @user, location:@user}
       else
         flash[:state] = :error
-        flash[:notice] = "Registration Failed!"
+        flash[:notice] = "Registration Failed! #{@user.errors.full_messages.join(",")}"
         format.html {redirect_to register_path}
         format.json { render json: @user.errors}
       end
