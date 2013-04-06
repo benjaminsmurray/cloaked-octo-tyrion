@@ -6,7 +6,7 @@ include SessionHelper
     flash[:state] = :success
     flash[:notice] = "Login Successful! Hello, #{user.username}"
     sign_in user
-    redirect_to my_events_handler_path
+    redirect_to events_path
   else
     flash[:state] = :error
     flash[:notice] = "Login Failed!"

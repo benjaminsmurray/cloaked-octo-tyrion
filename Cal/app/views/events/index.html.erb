@@ -1,0 +1,42 @@
+<% provide(:title, "Calendar Thing")%>
+<div class = "center hero-unit">
+<% if !signed_in? %>
+  <h1> Calendar thing!</h1>
+  <%= link_to("Register", register_path, class: "btn btn-large btn-primary")%>
+  <%= link_to("Login", login_path, class: "btn btn-large btn-primary")%>
+<% else %>
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th>Scheduled By</th>
+    <th>Event Name</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Place</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.owner %></td>
+    <td><%= event.name %></td>
+    <td><%= event.when_date %></td>
+    <td><%= event.when_time %></td>
+    <td><%= event.place %></td>
+    <td><%= event.descr %></td>
+    <td><%= link_to 'Show', event %></td>
+    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Schedule New Event', new_event_path, class: "btn btn-large btn-primary" %>
+<% end %>
+</div>

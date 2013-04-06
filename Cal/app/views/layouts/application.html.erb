@@ -13,7 +13,7 @@
     <div class ="container">
       <nav>
       <ul class = "nav pull-right">
-        <li><%= link_to("Home", my_events_handler_path) %></li>
+        <li><%= link_to("Home", events_path) %></li>
         <% if signed_in?%>
           <li><%= link_to "Log out", sessiondestroy_path, method: "delete"%>
           </li>
