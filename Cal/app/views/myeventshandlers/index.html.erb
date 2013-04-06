@@ -1,9 +1,17 @@
-<% if !signed_in? %>
+<% provide(:title, "Calendar Thing")%>
 <div class = "center hero-unit">
+<% if !signed_in? %>
     <h1> Calendar thing!</h1>
     <%= link_to("Register",register_path, class: "btn btn-large btn-primary")%>
     <%= link_to("Login", login_path, class: "btn btn-large btn-primary")%>
   </div>
 <% else %>
-  <%= current_user.username %>
+  <% if !@myevents.nil? %>
+    <% @myevents.each do |event| %>
+      <%= event[:eventid] %>
+      <br>
+    <% end %>
+  <% end%>
+  <%= link_to 'Schedule New Event', editevent_path, class: "btn btn-large btn-primary" %>
 <%end%>
+</div>

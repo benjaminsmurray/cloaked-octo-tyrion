@@ -4,7 +4,7 @@ include SessionHelper
   user = User.find_by_username(params[:session][:username])
   if user && user.authenticate(params[:session][:password])
     flash[:state] = :success
-    flash[:notice] = "Login Successful"
+    flash[:notice] = "Login Successful! Hello, #{user.username}"
     sign_in user
     redirect_to my_events_handler_path
   else

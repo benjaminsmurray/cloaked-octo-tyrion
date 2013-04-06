@@ -1,10 +1,10 @@
-<%= form_for(@myeventshandler) do |f| %>
-  <% if @myeventshandler.errors.any? %>
+<%= form_for(@myeventshandlers, url: {action:locals[:action]}) do |f| %>
+  <% if @myeventshandlers.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@myeventshandler.errors.count, "error") %> prohibited this myeventshandler from being saved:</h2>
+      <h2><%= pluralize(@myeventshandlers.errors.count, "error") %> prohibited this myeventshandler from being saved:</h2>
 
       <ul>
-      <% @myeventshandler.errors.full_messages.each do |msg| %>
+      <% @myeventshandlers.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -12,6 +12,9 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.label :eventid %>
+    <%= f.number_field :eventid, :value=>"#{@myeventshandlers.eventid}" %>
+    <br>
+    <%= f.submit locals[:submit], :class=>"btn btn-large btn-primary" %>
   </div>
 <% end %>

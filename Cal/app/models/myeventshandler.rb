@@ -1,3 +1,3 @@
 class Myeventshandler < ActiveRecord::Base
-  # attr_accessible :title, :body
+   attr_accessible :username, :eventid
 end
