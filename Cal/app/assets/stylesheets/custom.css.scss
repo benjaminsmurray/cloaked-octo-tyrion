@@ -40,12 +40,11 @@ p{
   font-size: 1.1em;
   line-height:1.7em;
 }
-#notice {
+#notice.success {
   padding: 2px;
-}
-.success{
   color:green;
 }
-.error{
-  color: red;
+#notice.error {
+  padding: 2px;
+  color:red;
 }

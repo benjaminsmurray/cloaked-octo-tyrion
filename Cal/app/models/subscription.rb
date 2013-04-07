@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :owner_name, :username
+  attr_accessible :username
   belongs_to :user
-  validates_uniqueness_of :username, scope: [:owner_name]
+  validates_uniqueness_of :username, :scope => :user_id
 end

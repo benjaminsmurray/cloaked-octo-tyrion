@@ -9,7 +9,7 @@ class SubscriptionsController < ApplicationController
      end
     else
     
-    @subscriptions = Subscription.find_all_by_owner_name(current_user.username)
+    @subscriptions = Subscription.find_all_by_user_id(current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,15 +27,10 @@ class SubscriptionsController < ApplicationController
       format.json { render json: events_url }
      end
     else
-      @subscription = Subscription.find(params[:id])
-      if @subscription[:owner_name] == current_user.username
-        respond_to do |format|
-          format.html # show.html.erb
-          format.json { render json: @subscription }
-        end
-      else
-        format.html {redirect_to subscription_path}
-      end
+     respond_to do |format|
+
+      format.html {redirect_to :action => "index"}
+     end
     end
   end
 
@@ -67,14 +62,19 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions.json
   def create
     @subscription = Subscription.new(params[:subscription])
-    @subscription[:owner_name] = current_user.username
-
+    @subscription[:user_id] = current_user.id
+    @users = User.find_by_username(@subscription[:username])
     respond_to do |format|
-      if @subscription.save
-        format.html { redirect_to :action => "index", notice: 'Subscription was successfully created.' }
-        format.json { render json: subscription_path, status: :created, location: @subscription }
+      if !@users.nil? && @subscription.save
+        flash[:state] = :success
+        flash[:notice] = "Subscription added!"
+        format.html { redirect_to :action => "index"}
+        format.json { render json: subscription_path}
       else
-        format.html { render action: "new" }
+        flash[:state] = :error
+        flash[:notice] = "Could not add subscription"
+
+        format.html { render action: "new"}
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
@@ -94,7 +94,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find(params[:id])
 
     respond_to do |format|
-      if @subscription[:owner_name] == current_user.username && @subscription.update_attributes(params[:subscription])
+      if @subscription[:user_id] == current_user.id && @subscription.update_attributes(params[:subscription])
         format.html { redirect_to :action => "index", notice: 'Subscription was successfully updated.' }
         format.json { head :no_content }
       else
@@ -116,7 +116,7 @@ class SubscriptionsController < ApplicationController
 
 
     @subscription = Subscription.find(params[:id])
-    if @subscription[:owner_name] == current_user.username
+    if @subscription[:user_id] == current_user.id
       @subscription.destroy
     end
 
